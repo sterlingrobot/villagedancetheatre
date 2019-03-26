@@ -1,21 +1,20 @@
 <?php
+/**
+ * @version     5.2.0
+ * @package     Admiror Gallery (component)
+ * @author      Igor Kekeljevic & Nikola Vasiljevski
+ * @copyright   Copyright (C) 2010 - 2018 http://www.admiror-design-studio.com All Rights Reserved.
+ * @license     http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ */
 
-/* ------------------------------------------------------------------------
-  # com_admirorgallery - Admiror Gallery Component
-  # ------------------------------------------------------------------------
-  # author   Igor Kekeljevic & Nikola Vasiljevski
-  # copyright Copyright (C) 2014 admiror-design-studio.com. All Rights Reserved.
-  # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
-  # Websites: http://www.admiror-design-studio.com/joomla-extensions
-  # Technical Support:  Forum - http://www.vasiljevski.com/forum/index.php
-  # Version: 5.0.0
-  ------------------------------------------------------------------------- */
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die();
 
+//Deprecated
 jimport('joomla.application.component.model');
-require_once (JPATH_SITE . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . 'admirorgallery' . DIRECTORY_SEPARATOR . 'admirorgallery' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'agHelper.php');
-require_once (dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR."scripts".DIRECTORY_SEPARATOR."secureimage.php");
+
+JLoader::register('agHelper', JPATH_SITE . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . 'admirorgallery' . DIRECTORY_SEPARATOR . 'admirorgallery' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'agHelper.php');
+JLoader::register('SecureImage', dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR."scripts".DIRECTORY_SEPARATOR."secureimage.php");
 
 class AdmirorgalleryModelImagemanager extends JModelLegacy {
 

@@ -1,30 +1,33 @@
 @charset "utf-8";
 
 body {
-    font: 100% Helvetica, Verdana, Arial, sans-serif;
+    /*font: 100% Helvetica, Verdana, Arial, sans-serif;*/
     margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
     padding: 0;
     text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
     color: #000000;
-    background: url(../images/backgrounds/bkgnd.png) repeat fixed;
+    /* background: url(../images/backgrounds/bkgnd.png) repeat fixed; */
 }
 
 .main #wrapper {
-    width: 80%;  /* this will create a container 80% of the browser width */
-    min-width: 700px;
-    background: #FFFFFF;
-    margin: 30px auto 0; /* the auto margins (in conjunction with a width) center the page */
-    padding-top: 20px;
-    border: 2px solid #EB94EB;
+    /* width: 80%; */  /* this will create a container 80% of the browser width */
+    max-width: 1500px;
+    background: url(../images/backgrounds/flourish_btm.png) repeat-x bottom;
+    margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+    /* padding-top: 20px; */
+    /* border: 2px solid #EB94EB; */
     text-align: left; /* this overrides the text-align: center on the body element. */
     -moz-box-shadow: 0 5px 10px #888;
-    -webkit-box-shadow: 0 5px 10px #888;
-    box-shadow: 0 5px 10px #888;
+    /* -webkit-box-shadow: 0 5px 10px #888; */
+    /* box-shadow: 0 5px 10px #888; */
+    display: flex;
+    position: relative;
+    flex-flow: row nowrap;
 }
 
 /* Tips for sidebar1:
 
-1. Since we are working in relative units, it's best not to use padding on the sidebar. It will be added to the overall width for standards compliant browsers creating an unknown actual width. 
+1. Since we are working in relative units, it's best not to use padding on the sidebar. It will be added to the overall width for standards compliant browsers creating an unknown actual width.
 
 2. Since em units are used for the sidebar value, be aware that its width will vary with different default text sizes.
 
@@ -32,12 +35,19 @@ body {
 
 */
 .main #sidebar1 {
-    float: left;
-    width: 12em; /* since this element is floated, a width must be given */
-    padding: 0 0 15px; /* top and bottom padding create visual space within this div  */
+    flex: 0 1 auto;
+    padding: 8px 0 8px 8px;
     text-align: right;
     position: relative;
-    min-height: 830px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.main #sidebar1 #logo {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    width: 24em;
 }
 
 .main #sidebar1 h3,
@@ -62,10 +72,14 @@ body {
 
 */
 .main #mainContent {
-    margin: 0 20px 0.5em 13em; /* the right margin can be given in percentages or pixels. It creates the space down the right side of the page. */
-    padding: 0 2em 2em;
-    background: url(../images/backgrounds/flourish_btm.png) repeat-x bottom;
-    min-height: 710px;
+    /* margin: 0 20px 0.5em 13em; */ /* the right margin can be given in percentages or pixels. It creates the space down the right side of the page. */
+    padding: 3em 2em 2em;
+    background: url(/images/stories/atthebarre-landscape-BW.jpg) top right -100%;
+    min-height: 880px;
+    background-size: cover;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
 }
 
 /* Miscellaneous classes for reuse */
@@ -103,14 +117,18 @@ body {
 }
 
 .main #sidebar1 #logo img {
-    padding-bottom: 10px;
-    border-bottom: 1px solid #8a8a8a;
+    padding-right: 10px;
+    border-right: 1px solid #8a8a8a;
+    width: 11em;
 }
 
 .main #wrapper #sidebar1 #logo p {
-    font: lighter 0.8em Helvietica-Light, Helvetica Light, Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size:  0.9em;
     color: #858585;
-    margin-top: 5px;
+    /* margin-top: 5px; */
+    text-align: left;
+    line-height: 1.333;
 }
 
 /****NAVIGATION*****/
@@ -118,6 +136,7 @@ body {
     list-style-type: none;
     margin: 0;
     line-height: 0.8;
+    padding: 4px 16px 8px;
 }
 
 .main #sidebar1 #navigation a:link,
@@ -127,6 +146,7 @@ body {
     text-transform: lowercase;
     color: #858585;
     text-decoration: none;
+    font-size: 1.5em;
 }
 
 .main #sidebar1 #navigation ul li ul li a:link,
@@ -148,10 +168,15 @@ body {
 }
 
 .main #mainContent h1 {
-    font: 2.5em Apple Chancery, Georgia, "Times New Roman", Times, serif;
+    font: 2.5em Georgia, "Times New Roman", Times, serif;
     font-weight: normal;
-    font-style: italic;
+    /* font-style: italic; */
     color: #9465A9;
+    text-transform: uppercase;
+    font-size: 2em;
+    background: black;
+    display: inline-block;
+    padding: 4px 8px;
 }
 
 .main #mainContent h2 {
@@ -182,10 +207,21 @@ body {
 }
 
 .main #banner {
-    margin: 0 20px 0 13em;
+    margin: 0;
     padding: 0 2em;
     background: url(../images/backgrounds/flourish_top.png) repeat-x;
-    height: 120px;
+     /*height: 420px;*/
+    /* top: 0; */
+    /* left: 8em; */
+    /* bottom: 0; */
+    background-size: auto 60%;
+    background-position: top right -1650px;
+    /* width: 80em; */
+    transition: background-position 40s;
+}
+
+.main #banner.scrolling {
+    background-position: top right -50px;
 }
 
 .main #mainContent p {
@@ -227,4 +263,27 @@ a:hover {
     font: 0.8em Helvetica-Light, Helvetica, Arial, sans-serif;
     color: #858585;
     margin: 5px 0 30px;
+}
+
+
+[itemprop='articleBody'] {
+    background: rgba(255,255,255,0.666);
+    padding: 1em;
+    flex: 0 1 auto;
+    margin-top: auto;
+}
+
+.item-page {
+    display: flex;
+    flex-flow: column;
+    justify-content: normal;
+    height: calc(100vh - 20em);
+}
+
+ul.nav.menu.open {
+    max-height: calc(90vh - 3em);
+}
+
+ul.nav-child.unstyled.small  li {
+    padding-right: 0 !important;
 }

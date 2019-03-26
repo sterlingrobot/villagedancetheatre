@@ -1,14 +1,12 @@
 <?php
-/*------------------------------------------------------------------------
-# com_admirorgallery - Admiror Gallery Component
-# ------------------------------------------------------------------------
-# author   Igor Kekeljevic & Nikola Vasiljevski
-# copyright Copyright (C) 2014 admiror-design-studio.com. All Rights Reserved.
-# @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
-# Websites: http://www.admiror-design-studio.com/joomla-extensions
-# Technical Support:  Forum - http://www.vasiljevski.com/forum/index.php
-# Version: 5.0.0
--------------------------------------------------------------------------*/
+/**
+ * @version     5.2.0
+ * @package     Admiror Gallery (component)
+ * @author      Igor Kekeljevic & Nikola Vasiljevski
+ * @copyright   Copyright (C) 2010 - 2018 http://www.admiror-design-studio.com All Rights Reserved.
+ * @license     http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ */
+
 defined('_JEXEC') or die('Restricted access');
 jimport( 'joomla.filesystem.folder' );
 $AG_template = JRequest::getVar('AG_template'); // Current template for AG Component
@@ -25,13 +23,13 @@ $ag_init_itemURL = $ag_rootFolder;
     <form action="index.php" id="AG_form" method="post" enctype="multipart/form-data">
 
         <div style="float: right">
-            <button class="btn" type="button" onclick="AG_createTriggerCode();window.parent.SqueezeBox.close();"><?php echo JText::_('Insert') ?></button>
-            <button class="btn" type="button" onclick="window.parent.SqueezeBox.close();"><?php echo JText::_('Cancel') ?></button>
+            <button class="btn" type="button" onclick="AG_createTriggerCode();window.parent.SqueezeBox.close();"><?php echo JText::_("AG_BUTTON_INSERT") ?></button>
+            <button class="btn" type="button" onclick="window.parent.SqueezeBox.close();"><?php echo JText::_("AG_BUTTON_CANCEL") ?></button>
         </div>
         <br style="clear:both;"/>
         <hr />
         <h2><?php echo JText::_("AG_FOLDERS"); ?></h2>
-        <?php echo JText::_('Select Folder:'); ?>&nbsp;
+        <?php echo JText::_("AG_SELECT_FOLDER"); ?>&nbsp;
         <select name="AG_form_folderName">
             <?php
             $ag_folders = JFolder::listFolderTree(JPATH_SITE . $ag_init_itemURL, "");
