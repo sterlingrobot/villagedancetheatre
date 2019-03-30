@@ -2,5 +2,4 @@
 sftp-config.json
 
 # db config
-configuration.php
-configuration-old.php
+configuration*
