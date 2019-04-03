@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" method="upgrade" type="plugin" group="system">
+	<name>System - ToggleBootstrap</name>
+	<author>Mike Feng Jinglong</author>
+	<creationDate>Apr 2017</creationDate>
+	<copyright>Copyright (C) 2011 - 2017 http://www.simbunch.com Mike Feng Jinglong</copyright>
+	<license>GNU General Public License, version 3 (http://www.gnu.org/licenses/gpl-3.0.html)</license>
+	<authorEmail>mike@simbunch.com</authorEmail>
+	<authorUrl>www.simbunch.com</authorUrl>
+	<version>1.0.0</version>
+	<description>ToggleBootstrap lets you toggle between different versions of Bootstrap easily, and lets you disable MooTools (core/more) as well.</description>
+	<scriptfile>script.php</scriptfile> 
+	<files>
+		<filename plugin="togglebootstrap">togglebootstrap.php</filename>
+		<folder>assets</folder>
+		<filename>index.html</filename>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="source" type="list" default="cdn" label="Source" description="Select the source from which to load the CSS and JS files">
+					<option value="local">Local</option>
+					<option value="cdn">CDN</option>
+				</field>
+				<field name="js_version" type="list" default="3" label="JS Version" description="Select the Bootstrap Javascript version to load">
+					<option value="2">2.3.2 (Joomla Core)</option>
+					<option value="3">3.3.7</option>
+					<option value="4">4.0.0-alpha.6</option>
+				</field>
+				<field name="css_version" type="list" default="3" label="CSS Version" description="Select the Bootstrap CSS version to load">
+					<option value="2">2.3.2 (Joomla Core)</option>
+					<option value="3">3.3.7</option>
+					<option value="4">4.0.0-alpha.6</option>
+				</field>
+				<field name="joomla_css" type="list" default="0" label="Load Core Bootstrap CSS" description="Select if you want to include Joomla Core's CSS file no matter what. This may be useful depending on your website.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="force_css" type="list" default="0" label="Force New Bootstrap CSS" description="Select if you want to force load Bootstrap 3/4 CSS. Useful if your template overrides Joomla's Bootstrap CSS.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="toggle_admin" type="list" default="0" label="Toggle Admin Backend" description="Select if you want to toggle Bootstrap in the admin backend.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="toggle_bs_on" type="textarea" default="" label="Only Toggle Bootstrap On" description="Enter the component's option value(s) to toggle Bootstrap on (separate each with new line)" hint="eg. com_content" />
+				<field name="toggle_bs_except" type="textarea" default="" label="Exclude Toggle Bootstrap On" description="Enter the component's option value(s) to exclude Bootstrap toggling (separate each with new line)" hint="eg. com_content" />
+				<field name="disable_mootools_core" type="list" default="1" label="Disable Mootools Core" description="Select if you want to disable MooTools Core">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="disable_mootools_more" type="list" default="1" label="Disable Mootools More" description="Select if you want to disable MooTools More" showon="disable_mootools_core:0">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="disable_mootools_on" type="textarea" default="" label="Only Disable MooTools On" description="Enter the component's option value(s) to disable MooTools on (separate each with new line)" hint="eg. com_content" />
+				<field name="disable_mootools_except" type="textarea" default="" label="Exclude Disable MooTools On" description="Enter the component's option value(s) to exclude MooTools disabling (separate each with new line)" hint="eg. com_content" />
+			</fieldset>
+		</fields>
+	</config>
+    <updateservers>
+		<server type="extension" priority="1" name="ToggleBootstrap Updates">https://www.simbunch.com/updates/togglebootstrap.xml</server>
+	</updateservers>
+</extension>
