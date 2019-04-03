@@ -3,6 +3,11 @@
 	defined( '_JEXEC' ) or die( 'Restricted access' );
 	JHtml::_('bootstrap.framework');
 	JHtml::_('bootstrap.loadCss', true, $this->direction);
+
+  $app    = JFactory::getApplication();
+  $menu   = $app->getMenu();
+  $active = $menu->getActive();
+  $class  = $active->alias;
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +22,14 @@
 	<link rel="stylesheet" href="<?php echo $this->baseurl ;?>/templates/system/css/system.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo $this->baseurl ;?>/templates/system/css/general.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo $this->baseurl ;?>/templates/<?php echo $this->template ;?>/css/default.css" type="text/css" />
+
+	<?php
+		$css = $this->baseurl . '/templates/' . $this->template . '/css/' . $class . '.css';
+		// check for stylesheet of active page
+		if(file_exists($_SERVER['DOCUMENT_ROOT'] . $css)) {
+			echo '<link rel="stylesheet" href="' . $css . '" type="text/css" />';
+		}
+	?>
 
 	<script src="<?php echo $this->baseurl ;?>/templates/<?php echo $this->template ;?>/js/nav.js"></script>
 </head>
@@ -55,7 +68,7 @@
 	   <jdoc:include type="modules" name="sidebar" title="Find Us on Facebook" style="html5" />
 		</div>
 
-		<div id="mainContent">
+		<div id="mainContent" class="<?php echo $class ;?>">
 			<jdoc:include type="component" style="html5" />
 		</div>
 

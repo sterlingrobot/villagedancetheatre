@@ -57,6 +57,30 @@ p {
 	line-height: 1.55;
 }
 
+.ctabtn:link,
+.ctabtn:active,
+.ctabtn:visited,
+.callbtn:link,
+.callbtn:active,
+.callbtn:visited {
+	display: inline-block;
+	padding: 0.5em 1.2em;
+	color: #9465A9;
+	background: transparent;
+	border: 2px solid #9465A9;
+	border-radius: 4px;
+	font-size: 1.2em;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-style: italic;
+	transition: 200ms color, 200ms background-color;
+}
+
+.ctabtn:hover {
+	color: #fff;
+	background: #9465A9;
+}
+
+
 #pg-bkgnd {
 	position: fixed;
 	opacity: 0.5;
@@ -92,16 +116,19 @@ p {
 .main #banner nav {
 	position: absolute;
 	top: 100%;
-	right: 1em;
-	z-index: 20;
+	right: 0;
 	overflow: hidden;
+	z-index: 20;
 }
 
 .main #banner #navigation {
-	background-color: rgba(255, 255, 255, 0.9);
 	padding-top: 1em;
 	padding-bottom: 1em;
+	padding-right: 1em;
 	transform: translateX(100%);
+	background-color: rgba(255, 255, 255, 0.9);
+	border-left: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .main #banner .menu-icon.init span,
@@ -127,10 +154,10 @@ p {
 .main #banner .menu-icon span {
 	display: block;
 	position: absolute;
-	top: 50%;
-	left: 0;
 	width: 100%;
 	height: 2px;
+	top: 50%;
+	left: 0;
 	background-color: #3e333b;
 }
 
@@ -160,16 +187,28 @@ p {
 	max-width: 10em;
 }
 
+.company-logo img {
+	max-width: 100%;
+}
+
 .main #sidebar {
 	display: none;
-	flex: 0 1 12em;
+	flex: 0 0 14em;
+	align-self: flex-start;
 	flex-flow: column nowrap;
 	justify-content: flex-start;
 	align-items: flex-end;
-	position: relative;
+	position: sticky;
 	width: 100%;
+	top: 2em;
 	margin-top: 4.4em;
 	padding: 0 0 8px 8px;
+}
+
+.main #sidebar .moduletable-facebook {
+	margin-top: 2em;
+	margin-left: 8px;
+	border-top: 1px solid #3e333b;
 }
 
 .company,
@@ -196,7 +235,8 @@ p {
 	text-align: left;
 	color: #3e333b;
 	white-space: nowrap;
-	font: lighter 0.875em Helvietica-Light, Helvetica Light, Helvetica, Arial, sans-serif;
+	font-size: 0.875em;
+	font-weight: 300;
 }
 
 .company-info span {
@@ -212,12 +252,6 @@ p {
 	font-size: 1.5em;
 }
 
-.main #sidebar .moduletable_fb {
-	margin-top: 2em;
-	margin-left: 8px;
-	border-top: 1px solid #3e333b;
-}
-
 .lineitem {
 	display: inline-block;
 	width: 300px;
@@ -225,10 +259,6 @@ p {
 	border-bottom: 1px solid #3e333b;
 }
 
-.main #sidebar #logo img {
-	padding-right: 10px;
-	padding-bottom: 10px;
-}
 
 /****NAVIGATION*****/
 .main #navigation li {
@@ -270,6 +300,7 @@ p {
 	justify-content: space-between;
 	width: 100%;
 	min-height: 880px;
+	margin-left: 1em;
 	background: rgba(255, 255, 255, 0.666);
 }
 
@@ -284,15 +315,15 @@ p {
 	font-size: 2em;
 	font-weight: normal;
 	color: #9465A9;
-	background: rgba(0, 0, 0, 0.9);
+	background: rgba(0, 0, 0, 0.7);
 	font: 2.5em Georgia, 'Times New Roman', Times, serif;
 	text-transform: uppercase;
 }
 
 .main #mainContent h2 {
-	color: #9465A9;
 	font-size: 2em;
 	font-weight: 300;
+	color: #9465A9;
 }
 
 .main #mainContent h3 {
@@ -310,13 +341,11 @@ p {
 
 .main #mainContent img {
 	display: block;
-	width: 100%;
 }
 
 .main #mainContent p {
 	font-size: 1.15em;
 	color: #333;
-	text-indent: 1em;
 }
 
 .main #mainContent .contentheading,
@@ -335,17 +364,17 @@ p {
 	color: #3e333b;
 }
 
+[itemprop='articleBody'],
+.blog {
+	padding: 1em 1em 3em;
+}
+
 [itemprop='articleBody'] {
 	display: flex;
 	flex: 1 1 auto;
 	flex-flow: column nowrap;
 	justify-content: space-between;
 	align-items: flex-start;
-	padding: 1em 1em 3em;
-}
-
-.blog {
-	padding: 1em 1em 3em;
 }
 
 .item-page {
@@ -361,13 +390,13 @@ p {
 
 .hphero {
 	display: flex;
-	flex: 1 0 auto;
+	flex:1 0 auto;
 	flex-flow: column nowrap;
 	justify-content: space-between;
 	width: 100%;
 	background-image: url('/images/stories/atthebarre-landscape-BW_2000x575.jpg');
-	background-size: auto 100vh;
-	background-position: center center;
+	background-size: cover;
+	background-position: 10% center;
 }
 
 .main #mainContent .hphero h3 {
@@ -430,8 +459,15 @@ ul.nav-child.unstyled.small li {
 		width: 100%;
 	}
 
+	.main #wrapper {
+		padding-top: 5em;
+	}
+
 	.main #banner {
+		position: fixed;
+		top: 0;
 		padding: 0.5em 1.5em 0.5em 1em;
+		z-index: 2;
 	}
 
 	.main #banner .company-logo {
@@ -440,6 +476,14 @@ ul.nav-child.unstyled.small li {
 
 	.main #banner .company-info {
 		display: none;
+	}
+
+	.main #mainContent img {
+		width: 100%;
+	}
+
+	[itemprop='blogPost'] img {
+		float: none !important;
 	}
 
 	.hpbanner .ctabtn {
