@@ -7,7 +7,7 @@
   $app    = JFactory::getApplication();
   $menu   = $app->getMenu();
   $active = $menu->getActive();
-  $class  = $active->alias;
+  $page  = $active->alias;
 ?>
 
 <!DOCTYPE html>
@@ -24,32 +24,36 @@
 	<link rel="stylesheet" href="<?php echo $this->baseurl ;?>/templates/<?php echo $this->template ;?>/css/default.css" type="text/css" />
 
 	<?php
-		$css = $this->baseurl . '/templates/' . $this->template . '/css/' . $class . '.css';
+		$css = $this->baseurl . '/templates/' . $this->template . '/css/' . $page . '.css';
+		$js = $this->baseurl . '/templates/' . $this->template . '/js/' . $page . '.js';
 		// check for stylesheet of active page
 		if(file_exists($_SERVER['DOCUMENT_ROOT'] . $css)) {
 			echo '<link rel="stylesheet" href="' . $css . '" type="text/css" />';
 		}
+		// check for js of active page
+		if(file_exists($_SERVER['DOCUMENT_ROOT'] . $js)) {
+			echo '<script src="' . $js . '"></script>';
+		}
+		echo '<script src="' . $this->baseurl  . '/templates/' . $this->template . '/js/nav.js"></script>';
+		echo '<script src="' . $this->baseurl  . '/templates/' . $this->template . '/js/hero.js"></script>';
 	?>
 
-	<script src="<?php echo $this->baseurl ;?>/templates/<?php echo $this->template ;?>/js/nav.js"></script>
 </head>
 
 <body class="main">
+
 	<div id="pg-bkgnd"></div>
 
-	<div id="banner">
+	<header id="header">
 		<div class="company">
 			<a class="company-logo" href="<?php echo $this->baseurl ;?>">
-				<img src="<?php echo $this->baseurl ;?>/templates/<?php echo $this->template ;?>/images/logo.png" alt="Village Dance Theatre">
+				<?php echo file_get_contents($_SERVER['DOCUMENT_ROOT'] . 'templates/' . $this->template . '/images/VDT_logo.svg'); ?>
 			</a>
 			<div class="company-info">
-				<span class="company-name">Village Dance Theatre, LLC</span>
-				<span>5907 W. Hwy 22</span>
-				<span>Oldham County</span>
-				<span class="location">Crestwood, KY 40014</span>
 				<span class="phone">(502) 241-2113</span>
 			</div>
 		</div>
+
 
 		<div class="menu-icon">
 			<span class="m1"></span>
@@ -59,23 +63,25 @@
 		</div>
 		<jdoc:include type="modules" name="menu" title="Main Menu" style="html5" />
 
-	</div>
+	</header>
 
 	<div id="wrapper">
 
-		<div id="sidebar">
-	   <jdoc:include type="modules" name="menu" title="Main Menu" style="html5" />
-	   <jdoc:include type="modules" name="sidebar" title="Find Us on Facebook" style="html5" />
-		</div>
-
-		<div id="mainContent" class="<?php echo $class ;?>">
+		<div id="mainContent" class="<?php echo $page ;?>">
+			<div class="pghero"></div>
 			<jdoc:include type="component" style="html5" />
 		</div>
 
 	</div>
 
 	<div id="footer">
-		&copy; <?php echo date('Y'); ?> Village Dance Theatre, LLC
+		<div class="company-info">
+			<span class="company-name">&copy; <?php echo date('Y'); ?> Village Dance Theatre, LLC</span>
+			<span>5907 W. Hwy 22</span>
+			<span>Oldham County</span>
+			<span class="location">Crestwood, KY 40014</span>
+		</div>
+
 	</div>
 
 </body>
