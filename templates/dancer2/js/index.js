@@ -3,10 +3,11 @@ jQuery(document).ready(function($) {
 
 	var $bkgnd = $('.carousel-bkgnd');
 
-	$('#carousel-home').on('slid.bs.carousel', function(e) {
+	// $('#carousel-home')
+	// 	.on('slid.bs.carousel', function(e) {
 
-		var $img = $(e.relatedTarget).find('img');
-		$bkgnd.css('background-image', 'url(' + $img.attr('src') + ')');
-
-	});
+	// 		var $img = $(e.relatedTarget).find('img');
+	// 		$bkgnd
+	// 			.css('background-image', 'url(' + $img.attr('src') + ')');
+	// 	});
 });

@@ -68,7 +68,11 @@
 	<div id="wrapper">
 
 		<div id="mainContent" class="<?php echo $page ;?>">
-			<div class="pghero"></div>
+			<?php if($page === 'index') : ?>
+				<jdoc:include type="module" name="custom" title="Carousel" style="html5" />
+			<?php else : ?>
+					<div class="pghero"></div>
+			<?php endif; ?>
 			<jdoc:include type="component" style="html5" />
 		</div>
 
