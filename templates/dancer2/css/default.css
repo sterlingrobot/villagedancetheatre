@@ -71,7 +71,9 @@ p {
 .ctabtn:active:focus,
 .callbtn:link,
 .callbtn:active,
-.callbtn:visited {
+.callbtn:visited,
+.ctabtn[disabled]:active:hover,
+.ctabtn[disabled]:hover {
 	display: inline-block;
 	padding: 0.5em 1.2em;
 	font-size: 1.2em;
@@ -85,8 +87,8 @@ p {
 	font-style: italic;
 }
 
-.ctabtn:active:hover,
-.ctabtn:hover {
+.ctabtn:not([disabled]):active:hover,
+.ctabtn:not([disabled]):hover {
 	color: #fff;
 	background: var(--purple);
 	border-color: var(--purple);
@@ -94,8 +96,8 @@ p {
 	box-shadow: 0 5px 5px -2px rgba(0, 0, 0, 0.2);
 }
 
-.ctabtn:active:focus,
-.ctabtn:focus {
+.ctabtn:not([disabled]):active:focus,
+.ctabtn:not([disabled]):focus {
 	transform: translate3d(0, 0, 0) scale(1.01);
 	outline: none;
 	box-shadow: 0 3px 5px -2px rgba(0, 0, 0, 0.3);
@@ -557,7 +559,7 @@ ul.nav-child.unstyled.small li {
 		position: fixed;
 		top: 0;
 		padding: 0.5em 1.5em 0.5em 1em;
-		z-index: 2;
+		z-index: 5;
 	}
 
 	#header nav {

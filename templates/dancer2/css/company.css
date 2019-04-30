@@ -1,0 +1,14 @@
+.jcarousel-container {
+	margin: 0 auto;
+}
+
+li.jcarousel-item {
+	position: relative;
+}
+
+li.jcarousel-item img {
+	position: absolute;
+	height: auto !important;
+	top: 50%;
+	transform: translateY(-50%);
+}

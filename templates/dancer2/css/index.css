@@ -236,5 +236,11 @@
 	.carousel-inner > .item {
 		padding-bottom: 100%;
 	}
+
+	.carousel-inner > .item img {
+		width: auto !important;
+		height: 100%;
+    max-width: none;
+	}
 }
 

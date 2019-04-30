@@ -1,0 +1,17 @@
+[itemProp='articleBody'] {
+	display: block;
+}
+
+[itemProp='blogPost'] img:first-child {
+	max-width: 24em;
+}
+
+[itemprop='blogPost'] {
+	margin-top: 2em;
+}
+
+[itemprop='blogPost']:after {
+	content: '';
+	display: table;
+	clear: both;
+}

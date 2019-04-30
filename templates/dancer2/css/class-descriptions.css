@@ -1,0 +1,32 @@
+.item-page img {
+	width: 100%;
+	margin: 1em 0 0.5em;
+}
+
+.class-description {
+	position: relative;
+	margin: 0 auto 2em;
+}
+
+.class-description:after {
+	content: '';
+	display: block;
+	position: absolute;
+	height: 4px;
+	width: 80%;
+	bottom: -1em;
+	left: 50%;
+	right: 0;
+	opacity: 0.5;
+	transform: translateX(-50%);
+	background: var(--purple);
+}
+
+.ctalink {
+	float: right;
+	margin-right: 10%;
+	font-size: 1.2em;
+	font-style: italic;
+	color: var(--purple) !important;
+}
+
