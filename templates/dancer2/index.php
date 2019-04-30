@@ -47,7 +47,7 @@
 	<header id="header">
 		<div class="company">
 			<a class="company-logo" href="<?php echo $this->baseurl ;?>">
-				<?php echo file_get_contents($_SERVER['DOCUMENT_ROOT'] . 'templates/' . $this->template . '/images/VDT_logo.svg'); ?>
+				<?php echo file_get_contents($_SERVER['DOCUMENT_ROOT'] . 'templates/' . $this->template . '/images/logo.svg'); ?>
 			</a>
 			<div class="company-info">
 				<span class="phone">(502) 241-2113</span>
