@@ -56,7 +56,7 @@ RewriteRule .* index.php [F]
 ## End - Custom redirects
 
 #RewriteCond %{HTTP_HOST} ^*\.villagedancetheatre\.com$ [NC]
-#RewriteRule ^(.*)$ http://villagedancetheatre.com/$1 [R=301,L]
+#RewriteRule ^(.*)$ https://villagedancetheatre.com/$1 [R=301,L]
 
 ##
 # Uncomment the following line if your webserver's URL
