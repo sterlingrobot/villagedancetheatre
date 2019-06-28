@@ -18,10 +18,12 @@ $mailer->setSender(array(
 	$config->get('fromname')
 ));
 
-$recipient = 'webmaster@villagedancetheatre.com';
+$to = 'dancedenee@villagedancetheatre.com';
+$bcc = 'webmaster@villagedancetheatre.com';
 $subject = 'Registration Inquiry from villagedancetheatre.com';
 
-$mailer->addRecipient($recipient);
+$mailer->addRecipient($to);
+$mailer->addBcc($bcc);
 
 // convert array to object
 $request = json_decode(json_encode($_REQUEST));
@@ -117,7 +119,7 @@ if ($mailer->Send()) {
 		'status' => 'error',
 		'heading' => 'Sorry, there was an error sending the email.',
 		'body' => 'Please email us directly using <a href="mailto: '
-			. $recipient
+			. $to
 			. '?subject=' . $subject
 			. '&body=' . $body
 			. '">this link</a>'
