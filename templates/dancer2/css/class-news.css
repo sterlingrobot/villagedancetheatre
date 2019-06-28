@@ -1,0 +1,10 @@
+.pghero {
+	background-position: center -5vw;
+}
+
+@media (min-width: 80em) {
+
+	.pghero {
+		background-position: center 25%;
+	}
+}

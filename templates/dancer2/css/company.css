@@ -12,3 +12,10 @@ li.jcarousel-item img {
 	top: 50%;
 	transform: translateY(-50%);
 }
+
+@media (min-width: 80em) {
+
+	.pghero[style*='_top'] {
+		background-position: center 10%;
+	}
+}
