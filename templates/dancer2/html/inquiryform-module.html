@@ -1,3 +1,4 @@
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <form class="form form-horizontal" name="inquiry-form" action="/inquiry.php" method="POST">
 	<div class="form-group">
 		<label for="inputName" class="col-sm-2 control-label">Name</label>
@@ -8,13 +9,15 @@
 	<div class="form-group">
 		<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 		<div class="col-sm-10">
-			<input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="you@example.com" required>
+			<input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="you@example.com"
+				required>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputPhone" class="col-sm-2 control-label">Phone</label>
 		<div class="col-sm-10">
-			<input type="tel" class="form-control" id="inputPhone" name="inputPhone" placeholder="555-555-5555" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+			<input type="tel" class="form-control" id="inputPhone" name="inputPhone" placeholder="555-555-5555"
+				pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
 		</div>
 	</div>
 	<div class="form-group">
@@ -62,7 +65,16 @@
 	<div class="form-group">
 		<label for="inputNotes" class="col-sm-2 control-label">Other Notes</label>
 		<div class="col-sm-10">
-			<textarea id="inputNotes" name="inputNotes" class="form-control" rows="6" placeholder="Any additional questions or comments..."></textarea>
+			<textarea id="inputNotes" name="inputNotes" class="form-control" rows="6"
+				placeholder="Any additional questions or comments..."></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-4 col-sm-6">
+			<div id="registration-captcha" class="g-recaptcha"
+				data-sitekey="6LcWfbIUAAAAAAUZF5PQf5HUIQ1QqCqOAC9UnMIf"
+				data-theme="light" data-size="normal">
+			</div>
 		</div>
 	</div>
 	<div class="form-group">
@@ -71,98 +83,121 @@
 		</div>
 	</div>
 	<div class="alert text-center">
-		<button type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<button type="button" class="close pull-right" aria-label="Close"><span
+				aria-hidden="true">&times;</span></button>
 	</div>
 </form>
 <script>
-(function($) {
-	'use strict';
+	(function ($) {
+		'use strict';
 
-	var childNum = 1;
+		var childNum = 1;
 
-	$('.add-child-form').on('click', function(e) {
+		$('.add-child-form').on('click', function (e) {
 
-		e.preventDefault();
+			e.preventDefault();
 
-		childNum++;
-
-		$(this).prev('fieldset')
-			.clone(true, true)
-			.find('legend').text('Child ' + childNum).end()
-			.find('label').attr('for', function() {
-				return $(this).attr('for').replace(/\d+/, childNum);
-			}).end()
-			.find('input, select')
-			.attr('name', function() {
-				return $(this).attr('name').replace(/\d+/, childNum);
-			})
-			.attr('id', function() {
-				return $(this).attr('id').replace(/\d+/, childNum);
-			})
-			.val('').end()
-			.insertBefore(this);
-	});
-
-	$('.remove-child-form').on('click', function(e) {
-
-		e.preventDefault();
-
-		childNum = 0;
-
-		$(this).closest('fieldset').remove();
-
-		$('fieldset').each(function(i) {
 			childNum++;
 
-			$(this)
+			$(this).prev('fieldset')
+				.clone(true, true)
 				.find('legend').text('Child ' + childNum).end()
-				.find('label').attr('for', function() {
+				.find('label').attr('for', function () {
 					return $(this).attr('for').replace(/\d+/, childNum);
 				}).end()
 				.find('input, select')
-				.attr('name', function() {
+				.attr('name', function () {
 					return $(this).attr('name').replace(/\d+/, childNum);
 				})
-				.attr('id', function() {
+				.attr('id', function () {
 					return $(this).attr('id').replace(/\d+/, childNum);
-				});
+				})
+				.val('').end()
+				.insertBefore(this);
 		});
-	});
 
-	$('[name="inquiry-form"]').on('submit', function(e) {
+		$('.remove-child-form').on('click', function (e) {
 
-		var $form = $(this),
+			e.preventDefault();
+
+			childNum = 0;
+
+			$(this).closest('fieldset').remove();
+
+			$('fieldset').each(function (i) {
+				childNum++;
+
+				$(this)
+					.find('legend').text('Child ' + childNum).end()
+					.find('label').attr('for', function () {
+						return $(this).attr('for').replace(/\d+/, childNum);
+					}).end()
+					.find('input, select')
+					.attr('name', function () {
+						return $(this).attr('name').replace(/\d+/, childNum);
+					})
+					.attr('id', function () {
+						return $(this).attr('id').replace(/\d+/, childNum);
+					});
+			});
+		});
+
+		$('.form-control').on('focus', function (e) {
+			return $(this).closest('.form-group').removeClass('has-error');
+		});
+
+		$('[name="inquiry-form"]').on('submit', function (e) {
+
+			var $form = $(this),
 				$notice = $form.find('.alert');
 
-		e.preventDefault();
+			e.preventDefault();
 
-		$form.addClass('sending');
+			if(!validateForm($form)) {
+				return;
+			}
 
-		$.post($form.attr('action'), $form.serialize())
-			.then(function(response) {
-				console.log(response);
-				$notice
-					.toggleClass('alert-success', response.status === 'success')
-					.toggleClass('alert-warning', response.status === 'error');
-				$('<h3></h3>').text(response.heading).appendTo($notice);
-				$('<p></p>').html(response.body).appendTo($notice);
-			});
-	});
+			$form.addClass('sending');
 
-	$('[name="inquiry-form"]').on('click', '.close', function(e) {
+			$.post($form.attr('action'), $form.serialize())
+				.then(function (response) {
+					console.log(response);
+					$notice
+						.toggleClass('alert-success', response.status === 'success')
+						.toggleClass('alert-warning', response.status === 'error');
+					$('<h3></h3>').text(response.heading).appendTo($notice);
+					$('<p></p>').html(response.body).appendTo($notice);
+				});
+		});
 
-		var $form = $(this).closest('.form'),
+		$('[name="inquiry-form"]').on('click', '.close', function (e) {
+
+			var $form = $(this).closest('.form'),
 				$notice = $form.find('.alert'),
 				shouldReset = $notice.hasClass('alert-success');
 
-		e.preventDefault();
+			e.preventDefault();
 
-		$form.removeClass('sending');
-		$notice.removeClass('alert-success alert-warning')
-			.find('h3, p').remove();
+			$form.removeClass('sending');
+			$notice.removeClass('alert-success alert-warning')
+				.find('h3, p').remove();
 
-		return shouldReset && $form[0].reset();
-	});
+			return shouldReset && $form[0].reset() && grecaptcha.reset();
+		});
 
-}(jQuery));
+		function validateForm($form) {
+			var valid = true;
+
+			$form.find('[required]').each(function() {
+				var val = this.value.trim();
+				if(!val.length) {
+					valid = false;
+					$(this).closest('.form-group').addClass('has-error');
+				}
+			});
+
+			return valid;
+		}
+
+	}(jQuery));
 </script>

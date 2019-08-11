@@ -122,6 +122,12 @@ button[type='submit']:not([disabled]):hover {
 	text-decoration: underline;
 }
 
+.form .alert a.close {
+	float: none;
+	font-size: 1em;
+	font-weight: normal;
+}
+
 .form .alert a:hover {
 	opacity: 1;
 }
