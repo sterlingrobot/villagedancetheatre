@@ -1,3 +1,6 @@
+# vs code configs
+.vscode/
+
 # ftp config
 sftp-config.json
 
