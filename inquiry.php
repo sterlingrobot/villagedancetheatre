@@ -56,6 +56,18 @@ $body .= strlen($request->inputNotes) ?
                     '<blockquote>' . $request->inputNotes . '</blockquote>'
                     : '';
 
+$body .= isset($request->inputStudioClass) ?
+                    '<blockquote>I\'m looking for In-Studio classes.</blockquote>'
+                    : '';
+
+$body .= isset($request->inputZoomClass) ?
+                    '<blockquote>I\'m looking for Video classes via Zoom.</blockquote>'
+                    : '';
+
+$body .= isset($request->inputHybridClass) ?
+                    '<blockquote>I\'m open to a combination of In-Studio and Video/Zoom classes.</blockquote>'
+                    : '';
+
 $body .= isset($request->inputClassVisit) ?
                     '<blockquote>I\'d like to arrange a class visit.</blockquote>'
                     : '';
@@ -150,8 +162,8 @@ function outputJSON($out)
 function isValidRequest($request)
 {
     return (
-		isset($request->{'g-recaptcha-response'})
-		&& verifyReCaptcha($request->{'g-recaptcha-response'})
+        isset($request->{'g-recaptcha-response'})
+        && verifyReCaptcha($request->{'g-recaptcha-response'})
         && isset($request->inputName)
         && strlen($request->inputName) > 0
         && isset($request->inputEmail)
@@ -161,12 +173,13 @@ function isValidRequest($request)
 
 function verifyReCaptcha($recaptchaCode)
 {
-	global $config;
+    global $config;
 
-    $postdata = http_build_query([
-		'secret'=> $config->get('captcha_secret'),
-		'response'=> $recaptchaCode]
-	);
+    $postdata = http_build_query(
+        [
+        'secret'=> $config->get('captcha_secret'),
+        'response'=> $recaptchaCode]
+    );
     $opts = ['http' =>
         [
             'method'  => 'POST',
@@ -176,8 +189,7 @@ function verifyReCaptcha($recaptchaCode)
     ];
     $context  = stream_context_create($opts);
     $result = file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
-	$check = json_decode($result);
-	
+    $check = json_decode($result);
+    
     return $check->success;
 }
-
