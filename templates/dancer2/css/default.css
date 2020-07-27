@@ -40,6 +40,13 @@ a:hover {
 	text-decoration: none;
 }
 
+a.inline-link:link,
+a.inline-link:active,
+a.inline-link:visited {
+	color: var(--purple);
+	text-decoration: underline;
+}
+
 ul,
 li {
 	margin: 0;
@@ -315,6 +322,14 @@ p {
 	text-decoration: none;
 }
 
+#navigation a[href='/classes/covid-19'],
+#navigation a[href='/classes/covid-19']:hover {
+	padding: 5px 10px;
+	text-transform: none;
+	background-color: var(--purple);
+	color: #fff;
+}
+
 #navigation .ctabtn:link,
 #navigation .ctabtn:visited,
 #navigation .ctabtn:active {
@@ -502,6 +517,10 @@ p {
 	margin: 0;
 	line-height: 1.1;
 	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.hpbanner {
+	text-align: center;
 }
 
 [itemprop='articleBody'],
