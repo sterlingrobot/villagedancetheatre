@@ -52,6 +52,10 @@ foreach ($_REQUEST as $key => $val) {
 
 $body = '<p><strong>' . $request->inputName . '</strong> submitted an online inquiry about registration.</p>';
 
+$body .= strlen($request->inputReferral) ?
+                    '<p><strong>How did you hear about us?</strong> ' . $request->inputReferral . '</p> '
+                    : '';
+
 $body .= strlen($request->inputNotes) ?
                     '<blockquote>' . $request->inputNotes . '</blockquote>'
                     : '';
