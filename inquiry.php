@@ -76,8 +76,12 @@ $body .= isset($request->inputClassVisit) ?
                     '<blockquote>I\'d like to arrange a class visit.</blockquote>'
                     : '';
 
-$body .= isset($request->inputPerfVisit) ?
-                    '<blockquote>I\'d like to arrange seeing an upcoming performance.</blockquote>'
+$body .= isset($request->inputSummerClass) ?
+                    '<blockquote>I\'m interested in Summer Classes.</blockquote>'
+                    : '';
+
+$body .= isset($request->inputFallRegistration) ?
+                    '<blockquote>I\'m interested in Fall Registration.</blockquote>'
                     : '';
 
 $body .= '<ul><strong>Contact Info</strong><br>';

@@ -36,6 +36,11 @@
 		}
 		echo '<script src="' . $this->baseurl  . '/templates/' . $this->template . '/js/nav.js"></script>';
 		echo '<script src="' . $this->baseurl  . '/templates/' . $this->template . '/js/hero.js"></script>';
+
+		if($page === 'registration') :
+			echo '<script src="' . $this->baseurl  . '/templates/' . $this->template . '/js/inquiry.js"></script>';
+			echo '<script src="https://www.google.com/recaptcha/api.js" async defer></script>';
+		endif;
 	?>
 
 </head>
